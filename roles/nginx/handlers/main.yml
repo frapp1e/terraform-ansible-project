@@ -1,0 +1,13 @@
+---
+- name: Validar y reiniciar Nginx
+  block:
+    - name: Validar configuración de Nginx
+      command: nginx -t
+      register: nginx_test
+      changed_when: false
+
+    - name: Reiniciar Nginx
+      service:
+        name: nginx
+        state: restarted
+

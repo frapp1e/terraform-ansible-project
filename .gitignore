@@ -1,0 +1,17 @@
+# Ansible Vault
+**/vault.yml
+*.vault
+
+# SSH keys
+*.pem
+*.key
+
+# Ansible retry files
+*.retry
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
