@@ -1,4 +1,0 @@
-env_name: prod
-nginx_port: 80
-server_name: fran.com
-

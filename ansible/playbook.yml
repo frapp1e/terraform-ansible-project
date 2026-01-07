@@ -1,8 +1,0 @@
-- name: Configurar servidor web
-  hosts: all
-  become: yes
-
-  roles:
-    - security
-    - nginx
-    - ssh_hardening
