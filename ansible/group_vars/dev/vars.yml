@@ -1,0 +1,4 @@
+env_name: dev
+nginx_port: 8080
+server_name: dev.fran.local
+

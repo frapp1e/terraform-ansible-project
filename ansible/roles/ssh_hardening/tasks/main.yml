@@ -1,0 +1,34 @@
+- name: Asegurar configuración segura de SSH
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    state: present
+    backup: yes
+  loop:
+    - { key: "Port", value: "{{ ssh_port }}" }
+    - { key: "PermitRootLogin", value: "{{ ssh_permit_root_login }}" }
+    - { key: "PasswordAuthentication", value: "{{ ssh_password_authentication }}" }
+    - { key: "PubkeyAuthentication", value: "{{ ssh_pubkey_authentication }}" }
+    - { key: "MaxAuthTries", value: "{{ ssh_max_auth_tries }}" }
+    - { key: "LoginGraceTime", value: "{{ ssh_login_grace_time }}" }
+    - { key: "AllowUsers", value: "{{ ssh_allow_users }}" }
+  notify: Reiniciar SSH
+
+- name: Asegurar configuración segura de SSH
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    state: present
+    backup: yes
+  loop:
+    - { key: "Port", value: "{{ ssh_port }}" }
+    - { key: "PermitRootLogin", value: "{{ ssh_permit_root_login }}" }
+    - { key: "PasswordAuthentication", value: "{{ ssh_password_authentication }}" }
+    - { key: "PubkeyAuthentication", value: "{{ ssh_pubkey_authentication }}" }
+    - { key: "MaxAuthTries", value: "{{ ssh_max_auth_tries }}" }
+    - { key: "LoginGraceTime", value: "{{ ssh_login_grace_time }}" }
+    - { key: "AllowUsers", value: "{{ ssh_allow_users }}" }
+  notify: Reiniciar SSH
+

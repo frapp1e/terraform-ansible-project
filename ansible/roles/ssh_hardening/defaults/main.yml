@@ -1,0 +1,8 @@
+ssh_port: 22
+ssh_permit_root_login: "no"
+ssh_password_authentication: "no"
+ssh_pubkey_authentication: "yes"
+ssh_max_auth_tries: 3
+ssh_login_grace_time: 30
+ssh_allow_users: "ec2-user"
+
