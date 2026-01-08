@@ -1,143 +1,52 @@
-# 🔐 Ansible Nginx Hardening Project
+# Terraform + Ansible Project
 
-Proyecto práctico de **automatización, despliegue y securización de un servidor web Nginx** en AWS utilizando **Ansible**, siguiendo buenas prácticas reales de entorno productivo.
+Este proyecto integra **Terraform** y **Ansible** para gestionar infraestructura y la configuración de servidores de manera automatizada.  
 
-Este proyecto simula el trabajo de un **Administrador de Sistemas / DevOps**, cubriendo desde el aprovisionamiento del servicio web hasta el hardening de seguridad del sistema operativo.
-
----
-
-## 🧠 Objetivos del proyecto
-
-- Automatizar la instalación y configuración de Nginx
-- Separar entornos **DEV** y **PROD**
-- Gestionar secretos de forma segura con **Ansible Vault**
-- Aplicar hardening de seguridad a nivel de sistema
-- Garantizar idempotencia y buenas prácticas en Ansible
-- Simular un entorno real de producción
+> ⚠️ Nota: Este repositorio no incluye binarios de proveedores ni archivos de estado de Terraform (`.terraform/`, `*.tfstate`) para mantener el repositorio limpio y evitar problemas con GitHub.
 
 ---
 
-## 🏗️ Arquitectura
+## Estructura del proyecto
 
-- **Servidor**: Amazon EC2 (Amazon Linux)
-- **Acceso**: SSH por clave pública
-- **Gestión**: Ansible desde nodo de control
-- **Entornos**:
-  - DEV
-  - PROD
-
-Ambos entornos se gestionan mediante `inventory.ini` y `group_vars`.
-
----
-
-## 🧰 Tecnologías utilizadas
-
-- Ansible
-- Nginx
-- Ansible Vault
-- Firewalld
-- Fail2ban
-- SSH Hardening
-- Amazon Linux
-- Git & GitHub
-
----
-
-## 📁 Estructura del proyecto
-
-ansible/
-├── inventory.ini
-├── playbook.yml
-├── group_vars/
-│ ├── dev/
-│ │ ├── vars.yml
-│ │ └── vault.yml (ignorado en Git)
-│ └── prod/
-│ ├── vars.yml
-│ └── vault.yml (ignorado en Git)
-├── roles/
-│ ├── nginx/
-│ │ ├── tasks/
-│ │ ├── templates/
-│ │ └── handlers/
-│ ├── security/
-│ └── ssh_hardening/
-└── README.md
+terraform-ansible-project/
+├── ansible/ # Playbooks y roles de Ansible
+│ ├── files/ # Archivos estáticos
+│ ├── group_vars/ # Variables de grupos
+│ ├── inventory.ini # Inventario de hosts
+│ ├── roles/ # Roles para configuraciones específicas
+│ └── playbook.yml # Playbook principal
+├── terraform/ # Configuraciones de Terraform
+│ ├── main.tf # Recursos principales
+│ ├── outputs.tf # Salidas
+│ ├── provider.tf # Proveedores
+│ ├── variables.tf # Variables
+│ └── .gitignore # Ignorar binarios y estados
+└── README.md # Documentación del proyecto
 
 
 ---
 
-## 🔐 Gestión de secretos
+## Requisitos
 
-Los secretos sensibles (usuarios, contraseñas, variables críticas) se gestionan mediante **Ansible Vault**:
+- **Terraform** >= 1.5  
+- **Ansible** >= 2.15  
+- **Git** >= 2.40  
+- Acceso a los proveedores necesarios (AWS, etc.)  
 
-- Los ficheros `vault.yml` **no se suben a GitHub**
-- Se descifran únicamente en tiempo de ejecución
-- Diferentes credenciales para DEV y PROD
+> Recomendado: tener configurado un entorno virtual o contenedores para aislar dependencias.
 
-Ejecución con vault:
+---
 
-ansible-playbook -i inventory.ini playbook.yml -l dev --ask-vault-pass
-ansible-playbook -i inventory.ini playbook.yml -l prod --ask-vault-pass
+## Uso
 
-⚙️ Funcionalidades implementadas
-🔧 Nginx
+### 1. Inicializar Terraform
+cd terraform
+terraform init
 
-Instalación automática
+2. Aplicar infraestructura
+terraform apply
 
-Configuración mediante templates Jinja2
-
-Hardening del servidor web:
-
-server_tokens off
-
-Headers de seguridad (XSS, CSP, etc.)
-
-Health check HTTP automático
-
-Validación de configuración antes de reiniciar
-
-🔒 Seguridad del sistema
-🔥 Firewall
-
-Firewalld habilitado
-
-Puertos mínimos abiertos:
-
-SSH (22)
-
-HTTP (80)
-
-🛡️ Fail2ban
-
-Protección frente a fuerza bruta en SSH
-
-Servicio habilitado y activo
-
-🔐 SSH Hardening
-
-Acceso root deshabilitado
-
-Autenticación por contraseña deshabilitada
-
-Acceso solo por clave pública
-
-Restricción de usuarios permitidos
-
-Límite de intentos y tiempo de login
-
-🧪 Validaciones
-
-Playbooks idempotentes
-
-Health check HTTP local
-
-Verificación de configuración Nginx (nginx -t)
-
-Separación clara de entornos
-
-🚀 Cómo ejecutar el proyecto
-
-ansible-playbook -i inventory.ini playbook.yml -l dev --ask-vault-pass
-ansible-playbook -i inventory.ini playbook.yml -l prod --ask-vault-pass
+3. Configurar servidores con Ansible
+cd ansible
+ansible-playbook -i inventory.ini playbook.yml
 
