@@ -9,19 +9,20 @@ Este proyecto integra **Terraform** y **Ansible** para gestionar infraestructura
 ## Estructura del proyecto
 
 terraform-ansible-project/
-├── ansible/ # Playbooks y roles de Ansible
-│ ├── files/ # Archivos estáticos
-│ ├── group_vars/ # Variables de grupos
-│ ├── inventory.ini # Inventario de hosts
-│ ├── roles/ # Roles para configuraciones específicas
-│ └── playbook.yml # Playbook principal
-├── terraform/ # Configuraciones de Terraform
-│ ├── main.tf # Recursos principales
-│ ├── outputs.tf # Salidas
-│ ├── provider.tf # Proveedores
-│ ├── variables.tf # Variables
-│ └── .gitignore # Ignorar binarios y estados
-└── README.md # Documentación del proyecto
+├── ansible/                 # Playbooks y roles de Ansible
+│   ├── files/               # Archivos estáticos
+│   ├── group_vars/          # Variables de grupos
+│   ├── inventory.ini        # Inventario de hosts
+│   ├── roles/               # Roles para configuraciones específicas
+│   └── playbook.yml         # Playbook principal
+├── terraform/               # Configuraciones de Terraform
+│   ├── main.tf              # Recursos principales
+│   ├── outputs.tf           # Salidas
+│   ├── provider.tf          # Proveedores
+│   ├── variables.tf         # Variables
+│   └── .gitignore           # Ignorar binarios y estados
+└── README.md                # Documentación del proyecto
+
 
 
 ---
